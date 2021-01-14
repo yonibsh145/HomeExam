@@ -29,6 +29,9 @@ export class App extends React.PureComponent<{}, AppState> {
 			const newTickets = (this.state.tickets
 				.map((ticket) => ticketToRename.id === ticket.id ? {...ticket, title: newTitle} : ticket));
 			this.setState({tickets: newTickets})
+
+			//bonus! ideally would be in the flow above but wanted to make the separation clear
+			api.renameTicket(ticketToRename.id, newTitle);
 		}
 	}
 

@@ -1,5 +1,8 @@
 const puppeteer = require('puppeteer');
 const serverData = require('../server/data.json');
+const eventually = require('wix-eventually')
+
+import axios from 'axios';
 
 let browser;
 let page;
@@ -74,6 +77,39 @@ describe("rename tickets", () => {
     const expected = originalTitles.map((title, idx) => idx === idxToRename ? newTitle : title);
 
     expect(currentTitles).toEqual(expected);
+  });
+
+  test('bonus / extra mile - renaming changes the item\'s', async () => {
+    await goToMainPage();
+
+    const idxToRename = 7;
+    
+    const renameButtons = await page.$x("//*[contains(text(), 'Rename') or contains(text(), 'rename')]");
+    
+    const newTitle = `Am I persisted?!`;
+
+    const originalTitles = await page.$$eval('.title', els => els.map(el => el.textContent))
+    
+    const acceptDialog = new Promise<void>((res, rej) => {
+      page.once('dialog', async dialog => {
+        dialog.accept(newTitle).then(res, rej);
+      });
+    });
+
+    await renameButtons[idxToRename].click();
+
+    await acceptDialog;
+
+    
+
+    const renamedTicketInServer = await axios.get('http://localhost:3232/api/tickets')
+      .then((res) => res.data)
+      .then((tickets) => tickets.find(t => t.title === originalTitles[idxToRename]));
+
+    return eventually(() => {
+      expect(renamedTicketInServer.title).toBe(newTitle);
+    });
+
   });
 
 })
