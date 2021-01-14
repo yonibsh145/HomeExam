@@ -41,6 +41,8 @@ b. Some times clients write confusing or wrong titles. Agents need a way to rena
 Add a rename button that will use the browsers `prompt` API to receive a new title and show it.
 Make sure to label that button "Rename".
 
+PS: in a "real" product we would also want to persist this change to our server, so it doesn't go away after refresh and other users can see it as well. However, this not required from you to complete this task. It's ok that the change will dissappear after refresh. If you've finished other tasks and still have time, go ahead and try to fix that too!
+
 c. Our ticket's data *might* also contain labels (tags), but we're not making use of them in our UI. Fix that by adding the labels according to the following design below. PS: feel free to add more labels to the data (data.json) if you need.
 ![labels](https://d2x3xhvgiqkx42.cloudfront.net/3d412e82-d97e-487e-b1a3-41a6bd24a05b/b9bd9ddb-c0bf-4b55-888e-747f0d6524c8/2019/09/27/6d307660-953a-4e00-a28d-ffbc48e68fb8/5d422571-d37c-4890-9837-4f786f1e5e10.png)  
 Friendly reminder to commit and push after completing this step.
