@@ -1,5 +1,7 @@
 const puppeteer = require('puppeteer');
-const serverData = require('../server/data.json');
+
+
+import { readFileSync } from 'fs';
 
 let browser;
 let page;
@@ -34,6 +36,7 @@ describe("Titles", () => {
   });
 
   test('first title content is correct', async () => {
+    const serverData = JSON.parse(readFileSync('../server/data.json', 'utf8'));
     await goToMainPage();
     const titles = await page.$$('.title')
 
@@ -42,6 +45,7 @@ describe("Titles", () => {
   });
 
   test('last title content is correct', async () => {
+    const serverData = JSON.parse(readFileSync('../server/data.json', 'utf8'));
     await goToMainPage();
     const titles = await page.$$('.title')
 

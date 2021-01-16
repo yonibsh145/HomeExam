@@ -57,9 +57,18 @@ d. **Bonus** Step *a* wasn't enough - some tickets have long content. Add a show
 a. Agents are complaining that our search functionality isn't working properly. They gave the example that when searching for "wix store", the ticket titled "Search bar for my wix store" (id `6860d043-f551-58c8-84d6-f9e6a8cb0cb2`) is not returned. Checking the data, that ticket does exist.. Find the issue and fix it.  
 Friendly reminder to commit and push after completing this step.
 
-b. We're showing only 20 tickets but agents can swear there are more. Solve this problem.  
-**Keep in mind the number of tickets is planned to grow exponentially very soon so make sure to think of a proper solution.**
-Friendly reminder to commit and push after completing this step.
+b. *Backend only feature* - add an API that will allow creating new tickets. The endpoint should be `/tickets` and the HTTP method should be `POST`.
+The data passed to this API should contain "title", "content" and "userEmail", for example:
+```
+{
+        "title": "My new ticket!",
+        "content": "This is the new ticket's content",
+		"userEmail": "submitter@email.com",
+}
+```
+When creating the ticket, note the missing parameters that are crucial for the app to work and fill them in a way that will be consistent with the rest of the app.
+The ticket created shoud be inserted to the top of the list. In other words, after `POST`ing the above payload to `/tickets`, the first ticket in the list should be one with the "My new ticket!"
+
 
 
 #### 2C - Bonus Task 
