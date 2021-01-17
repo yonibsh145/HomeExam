@@ -58,6 +58,30 @@ body {
 		font-weight: 500;
 		font-size: 12px;
 	}
+	.fontSize {
+		text-align: right;
+	}
+
+	.fontSize button {
+		border: none;
+		border-radius: 5px;
+		padding: 5px 5px;
+		margin-right: 5px;
+		font-size: 1.1em;
+		font-family: inherit;
+		background: white;
+		box-shadow: 0 2px 6px 1px #e1e5e8;
+		outline: none;
+		cursor: pointer;
+
+		&:hover {
+			box-shadow: 0 2px 6px 1px #3899ec;
+		}
+
+		&:active {
+			box-shadow: 0 2px 6px 1px red;
+		}
+	}
 
 	.tickets {
 
@@ -89,7 +113,7 @@ body {
 				font-style: normal;
 				color: #20455e;
 			}
-			
+
 			footer {
 
 				display: flex;
@@ -103,7 +127,25 @@ body {
 				}
 			}
 
-			
+			&.small {
+				font-size:0.8em;
+				& .title {
+					font-size: inherit;
+				}
+				& footer .meta-data {
+					font-size: smaller;
+				}
+			}
+
+			&.large {
+				font-size:1.2em;
+				& .title {
+					font-size: inherit;
+				}
+				& footer .meta-data {
+					font-size: smaller;
+				}
+			}
 		}
 	}
 }

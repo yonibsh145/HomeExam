@@ -83,6 +83,17 @@ Otherwise, it is mandatory.
 a. Add at least 3 automated browser tests using puppeteer, testing key features of your choice.
 b. Add component tests (using `jest`) to your work from *part 1*.
 
+### Part 5 - Font Resize
+Add a way for users to resize the texts inside the list to 3 states:
+`small`, `normal`, `large`
+![Font Size](images/font-size-component.png)
+
+a. Add a new component above the heading which allows resize to the 3 sizes: `small`, `normal`, `large`
+b. Apply the changes to our list on every change  
+> the default should be normal  
+
+#### Bonus 
+Make sure you can't choose an already chosen state
 
 ## General notes
 - Test your work well. Think of edge cases. Think of how users will use it, and make sure your work is of high quality

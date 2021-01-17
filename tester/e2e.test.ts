@@ -52,3 +52,35 @@ describe("Titles", () => {
 
 });
 
+describe("font size", () => {
+
+  test('Normal class name is rendered', async () => {
+    await goToMainPage();
+    const tickets = await page.$$('.tickets li')
+
+    let elementClass = await page.evaluate(el => el.className, tickets[0])
+    expect(elementClass).toContain('normal')
+  });
+
+  test('Small class affects font size', async () => {
+    await goToMainPage();
+    const smallButton = await page.$('#small')
+    await smallButton.click();
+    const tickets = await page.$$('.tickets li')
+    let fontSize = await page.evaluate(el => getComputedStyle(el).fontSize, tickets[0])
+    const numFontSize = fontSize.match(/\d+[\.]+\d+/ig);
+    expect(Number(numFontSize)).toBeLessThan(16);
+  });
+
+  test('Large class affects font size', async () => {
+    await goToMainPage();
+    const smallButton = await page.$('#large')
+    await smallButton.click();
+    const tickets = await page.$$('.tickets li')
+    let fontSize = await page.evaluate(el => getComputedStyle(el).fontSize, tickets[0])
+    const numFontSize = fontSize.match(/\d+[\.]+\d+/ig);
+    expect(Number(numFontSize)).toBeGreaterThan(16);
+  });
+
+});
+
