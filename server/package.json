@@ -20,7 +20,9 @@
 		"googleapis": "^39.2.0",
 		"ts-node": "^8.3.0",
 		"typescript": "^3.5.3",
-		"ts-node-dev": "1.1.0"
-	},
+		"ts-node-dev": "1.1.0",
+      "uuid": "latest"
+
+    },
 	"description": ""
 }

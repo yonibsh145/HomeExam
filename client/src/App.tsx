@@ -3,65 +3,77 @@ import './App.scss';
 import {createApiClient, Ticket} from './api';
 
 export type AppState = {
-	tickets?: Ticket[],
-	search: string;
+    tickets?: Ticket[],
+    search: string;
 }
 
 const api = createApiClient();
 
 export class App extends React.PureComponent<{}, AppState> {
 
-	state: AppState = {
-		search: ''
-	}
+    state: AppState = {
+        search: ''
+    }
 
-	searchDebounce: any = null;
+    searchDebounce: any = null;
 
-	async componentDidMount() {
-		this.setState({
-			tickets: await api.getTickets()
-		});
-	}
+    async componentDidMount() {
+        this.setState({
+            tickets: await api.getTickets()
+        });
+    }
 
-	renderTickets = (tickets: Ticket[]) => {
+    cloneTicket = async (id: string) => {
+        const newTicket : Ticket = await api.cloneTicket(id);
+        if(newTicket){
+            let { tickets } = this.state;
+            tickets = tickets ? tickets : [];
+            tickets = [newTicket].concat(tickets);
+            this.setState({tickets});
+        }
+    }
 
-		const filteredTickets = tickets
-			.filter((t) => (t.title.toLowerCase() + t.content.toLowerCase()).includes(this.state.search.toLowerCase()));
+    renderTickets = (tickets: Ticket[]) => {
+
+        const filteredTickets = tickets
+            .filter((t) => (t.title.toLowerCase() + t.content.toLowerCase()).includes(this.state.search.toLowerCase()));
 
 
-		return (<ul className='tickets'>
-			{filteredTickets.map((ticket) => (<li key={ticket.id} className='ticket'>
-				<h5 className='title'>{ticket.title}</h5>
-				<footer>
-					<div className='meta-data'>By {ticket.userEmail} | { new Date(ticket.creationTime).toLocaleString()}</div>
-				</footer>
-			</li>))}
-		</ul>);
-	}
+        return (<ul className='tickets'>
+            {filteredTickets.map((ticket) => (<li key={ticket.id} className='ticket'>
+                <h5 className='title'>{ticket.title}</h5>
+                <button className='cloneButton' onClick={() => this.cloneTicket(ticket.id)}>Clone</button>
+                <footer>
+                    <div
+                        className='meta-data'>By {ticket.userEmail} | {new Date(ticket.creationTime).toLocaleString()}</div>
+                </footer>
+            </li>))}
+        </ul>);
+    }
 
-	onSearch = async (val: string, newPage?: number) => {
-		
-		clearTimeout(this.searchDebounce);
+    onSearch = async (val: string, newPage?: number) => {
 
-		this.searchDebounce = setTimeout(async () => {
-			this.setState({
-				search: val
-			});
-		}, 300);
-	}
+        clearTimeout(this.searchDebounce);
 
-	render() {	
-		const {tickets} = this.state;
+        this.searchDebounce = setTimeout(async () => {
+            this.setState({
+                search: val
+            });
+        }, 300);
+    }
 
-		return (<main>
-			<h1>Tickets List</h1>
-			<header>
-				<input type="search" placeholder="Search..." onChange={(e) => this.onSearch(e.target.value)}/>
-			</header>
-			{tickets ? <div className='results'>Showing {tickets.length} results</div> : null }	
-			{tickets ? this.renderTickets(tickets) : <h2>Loading..</h2>}
-		</main>)
-	}
+    render() {
+        const {tickets} = this.state;
+
+        return (<main>
+            <h1>Tickets List</h1>
+            <header>
+                <input type="search" placeholder="Search..." onChange={(e) => this.onSearch(e.target.value)}/>
+            </header>
+            {tickets ? <div className='results'>Showing {tickets.length} results</div> : null}
+            {tickets ? this.renderTickets(tickets) : <h2>Loading..</h2>}
+        </main>)
+    }
 }
 
 export default App;

@@ -83,7 +83,14 @@ Otherwise, it is mandatory.
 a. Add at least 3 automated browser tests using puppeteer, testing key features of your choice.
 b. Add component tests (using `jest`) to your work from *part 1*.
 
-
+### Part 5 - Add A Clone Button
+It's pretty common that we need to clone tickets in our system.
+### Part 1 
+Add a clone button on the menu item and replicate an item in the client
+![CloneButton](./images/clone.png) 
+### Part 2 
+Add a clone method in the API and server and add an in memory item to the collection 
+ 
 ## General notes
 - Test your work well. Think of edge cases. Think of how users will use it, and make sure your work is of high quality
 - Stick to the best practices of the libraries used as much as possible

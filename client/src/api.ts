@@ -18,6 +18,12 @@ export const createApiClient = (): ApiClient => {
     return {
         getTickets: () => {
             return axios.get(APIRootPath).then((res) => res.data);
-        }
-    }
+        },
+			cloneTicket: (id: string) => {
+				return axios.post(`${APIRootPath}/${id}/clone`).then((res) => res.data);
+			}
+		}
 }
+
+
+

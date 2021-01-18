@@ -1,4 +1,5 @@
 import express from 'express';
+import {v4 as uuidV4 } from 'uuid';
 import bodyParser = require('body-parser');
 import { tempData } from './temp-data';
 import { serverAPIPort, APIPath } from '@fed-exam/config';
@@ -28,6 +29,21 @@ app.get(APIPath, (req, res) => {
   res.send(paginatedData);
 });
 
+app.post('/api/tickets/:id/clone', (req, res) => {
+    let newTicket;
+    const ticket = tempData.filter(ticket => ticket.id === req.params.id)
+    if (ticket) {
+        newTicket = JSON.parse(JSON.stringify(ticket[0]));
+        newTicket.id = uuidV4();
+        tempData.push(newTicket);
+    }
+    if(newTicket) {
+        res.send(newTicket);
+    }else {
+        res.status(500);
+        res.send('Failed to find ticket to clone');
+    }
+});
+
 app.listen(serverAPIPort);
 console.log('server running', serverAPIPort)
-
