@@ -58,7 +58,30 @@ body {
 		font-weight: 500;
 		font-size: 12px;
 	}
+	.sort {
+		padding-top: 5px;
 
+		button {
+			border: none;
+			padding: 5px;
+			box-shadow: 0 2px 6px 1px #e1e5e8;
+			margin:0 2px;
+			border-radius: 5px;
+			cursor: pointer;
+			outline: none;
+			background-color: white;
+			color: lightgray;
+
+			&.selected {
+				box-shadow: 0 2px 6px 1px #3899ec;
+				color: #7a92a5;
+			}
+			&:active {
+				box-shadow: 0 2px 6px 1px #20455e;
+				color: #7a92a5;
+			}
+		}
+	}
 	.tickets {
 
 		margin: 0;

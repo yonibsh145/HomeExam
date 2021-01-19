@@ -1,9 +1,6 @@
 import express from 'express';
 import bodyParser = require('body-parser');
 import { tempData } from './temp-data';
-import { serverAPIPort, APIPath } from '@fed-exam/config';
-
-console.log('starting server', { serverAPIPort, APIPath });
 
 const app = express();
 
@@ -26,6 +23,31 @@ app.get(APIPath, (req, res) => {
   const paginatedData = tempData.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
 
   res.send(paginatedData);
+const sort = (data: Ticket[], by: SortCriteria, dir: SortDirection) => {
+	interface mapper {
+		[key: string]: string;
+	}
+
+	const mapToKey: mapper = {date: 'creationTime', email: 'userEmail', title: 'title'};
+	const key = mapToKey[by];
+    if(key) {
+		data.sort((a: Ticket, b: Ticket): number => {
+			// @ts-ignore
+			return  dir === 'ASC' ? (a[key] < b[key]  ? -1 : 0) : (a[key] > b[key] ? -1 : 0)
+		});
+	}
+};
+
+app.get('/api/tickets', (req, res) => {
+    const page = req.query.page || 1;
+    const sortBy = req.query.sortBy || '';
+	const direction = req.query.sortDir || '';
+	if(sortBy){
+		 sort(tempData, sortBy, direction);
+	}
+    const paginatedData = tempData.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
+
+    res.send(paginatedData);
 });
 
 app.listen(serverAPIPort);

@@ -83,6 +83,24 @@ Otherwise, it is mandatory.
 a. Add at least 3 automated browser tests using puppeteer, testing key features of your choice.
 b. Add component tests (using `jest`) to your work from *part 1*.
 
+### part 5
+Add a sort component to your system.
+Allow sorting by ticket title, creator email and creation date.
+
+#### Client
+Add a client component that hightlights the current sort (if any) and states the sort direction.
+Clicking on sort, sorts the collection in the server and returns the correct data sorted. 
+Clicking on a currently active sort changes it's direction (Ascending / Descending).
+Make sure the view contains the words : title, data, email and the direction of sort.
+Example UI:  
+![sort](images/sort.png)
+
+#### Server
+On the `GET:Tickets` API add parameters to support sort.  
+Return the correct data sorted according to the request.
+
+
+
 
 ## General notes
 - Test your work well. Think of edge cases. Think of how users will use it, and make sure your work is of high quality
