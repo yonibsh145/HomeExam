@@ -64,7 +64,7 @@ export class App extends React.PureComponent<{}, AppState> {
 
 		return (<ul className='tickets'>
           {filteredTickets.map((ticket) => (<li key={ticket.id + pinnedView } className='ticket'>
-            <button onClick={()=>{
+            <button className='pinButton' onClick={()=>{
               if (pinnedView)
                 this.unpinTicket(ticket)
               else
