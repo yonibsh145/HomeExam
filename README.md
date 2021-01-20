@@ -38,8 +38,9 @@ a. Our tickets list is only showing the title. Make it show the content as well,
 Friendly reminder to commit and push after completing this step.
 
 b. Some agents want an option to pin some tickets 
-Add a pin button or text that will pin to top the tickets from view. Make sure there is an option to restore it as well.
-use "pin" and "unpin" as the text for those different states 
+Add a pin button or clickable text that will pin to top the tickets from view. 
+Make sure there is an option to restore it back as well.
+use "pin" and "unpin" as the text for those different button states.
 
 c. Our ticket's data *might* also contain labels (tags), but we're not making use of them in our UI. Fix that by adding the labels according to the following design below. PS: feel free to add more labels to the data (data.json) if you need.
 ![labels](https://d2x3xhvgiqkx42.cloudfront.net/3d412e82-d97e-487e-b1a3-41a6bd24a05b/b9bd9ddb-c0bf-4b55-888e-747f0d6524c8/2019/09/27/6d307660-953a-4e00-a28d-ffbc48e68fb8/5d422571-d37c-4890-9837-4f786f1e5e10.png)  
