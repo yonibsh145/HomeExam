@@ -55,12 +55,10 @@ d. **Bonus** Step *a* wasn't enough - some tickets have long content. Add a show
 ### Part 2 - List functionality
 
 2a. It's pretty common that we need to clone tickets in our system.
-#### Part 1 
-Add a clone button or text that will replicate an item in the client.
 
-#### Part 2 
-Add a clone method in the API and server and add an in memory item to the collection 
-Connect your client side "clone" button to that API call 
+1.Add a clone button or text that will replicate an item in the client.
+2.Add a clone method in the API and server and add an in memory item to the collection 
+3.Connect your client side "clone" button to that API call
 
 b. We're showing only 20 tickets but agents can swear there are more. Solve this problem.  
 **Keep in mind the number of tickets is planned to grow exponentially very soon so make sure to think of a proper solution.**
