@@ -30,10 +30,9 @@ export class App extends React.PureComponent<{}, AppState> {
         const direction = (sort && sort.direction) || '';
         return (
             <div className='sort'>
-                <label>Sort By: </label>
-                {this.renderSortButton('Title', 'title', sortBy)}
-                {this.renderSortButton('Date', 'date', sortBy)}
-                {this.renderSortButton('Email', 'email', sortBy)}
+                {this.renderSortButton('Sort By Title', 'title', sortBy)}
+                {this.renderSortButton('Sort By Date', 'date', sortBy)}
+                {this.renderSortButton('Sort By Email', 'email', sortBy)}
                 <label id='sort-direction'>{ direction ? (direction === 'ASC' ? ' Ascending' : ' Descending') : '' }</label>
             </div>
         );
