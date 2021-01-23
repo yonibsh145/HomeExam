@@ -85,8 +85,10 @@ b. Add component tests (using `jest`) to your work from *part 1*.
 
 ### Part 5 - Dark Mode
 Agents use this system all day, white can be quite a tiring color on the eyes 😫.
-Add a way for the user to change the background of the UI to `black` and the basic font of the outline to `white`.
-![Dark Mode](images/Dark%20mode.png)
+
+1.Add a "dark mode" button or clickable text that will change the background of the UI to `black` and the basic font of the outline to `white`.
+2.When the "dark mode" is enabled let the user revert it with a button or clickable text that will change the background of the UI to `white` and the basic font of the outline to `black`.
+use "dark mode" and "light mode" as the text for those different button states.
 
 ## General notes
 - Test your work well. Think of edge cases. Think of how users will use it, and make sure your work is of high quality
