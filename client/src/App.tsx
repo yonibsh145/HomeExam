@@ -40,17 +40,17 @@ export class App extends React.PureComponent<{}, AppState> {
 	}
 
 	onSearch = async (val: string, newPage?: number) => {
-		
 		clearTimeout(this.searchDebounce);
 
 		this.searchDebounce = setTimeout(async () => {
+			const newTickets = await api.getTickets(val)
 			this.setState({
-				search: val
-			});
+				tickets : newTickets
+			})
 		}, 300);
 	}
 
-	render() {	
+	render() {
 		const {tickets} = this.state;
 
 		return (<main>
@@ -58,7 +58,7 @@ export class App extends React.PureComponent<{}, AppState> {
 			<header>
 				<input type="search" placeholder="Search..." onChange={(e) => this.onSearch(e.target.value)}/>
 			</header>
-			{tickets ? <div className='results'>Showing {tickets.length} results</div> : null }	
+			{tickets ? <div className='results'>Showing {tickets.length} results</div> : null }
 			{tickets ? this.renderTickets(tickets) : <h2>Loading..</h2>}
 		</main>)
 	}

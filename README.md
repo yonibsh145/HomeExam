@@ -65,8 +65,6 @@ Friendly reminder to commit and push after completing this step.
 #### 2C - Bonus Task 
 c. **Bonus** There is a need to find tickets created before/after a certain date, and our designer is on vacation to design proper UI for it. Change the search functionality so that when searching for `after:27/09/2019 api`, only tickets matching the word "api" created *after* 27/09/2019 will show. Add support for `before:[DATE]` and `from:[EMAIL]` as well.  
 Friendly reminder to commit and push after completing this step.
-
-
 ### Part 3 - Your extra touch
 Think of a small addition to this project and make it happen. If you need inspiration, you can check out our real ticketing app at https://wix.com/wixanswers and grab some ideas from there ;)
 It should involve adding something to the UI, or server (or both!).

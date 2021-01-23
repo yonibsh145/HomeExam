@@ -15,9 +15,9 @@ export type ApiClient = {
 }
 
 export const createApiClient = (): ApiClient => {
-    return {
-        getTickets: () => {
-            return axios.get(APIRootPath).then((res) => res.data);
-        }
+  return {
+    getTickets: (s = '') => {
+      return axios.get(APIRootPath + `?search=${s}`).then((res) => res.data);
     }
+  }
 }
