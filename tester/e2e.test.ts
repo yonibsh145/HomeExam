@@ -1,6 +1,6 @@
 const puppeteer = require('puppeteer');
 const serverData = require('../server/data.json');
-import { staticsUrl } from '@fed-exa/config';
+import { staticsUrl } from '@fed-exam/config';
 
 let browser;
 let page;
@@ -50,29 +50,5 @@ describe("Titles", () => {
         expect(value).toBe(serverData[titles.length - 1].title)
     });
 
-});
-
-describe("Clone", () => {
-
-  test('20 clone buttons are rendered', async () => {
-    await goToMainPage();
-    const cloneButtons = await page.$$('.cloneButton')
-    expect(cloneButtons.length).toBe(20)
-  });
-
-  test('Clone button text', async () => {
-    await goToMainPage();
-    const cloneButtons = await page.$$('.cloneButton')
-    let value = await page.evaluate(el => el.textContent, cloneButtons[0])
-    expect(value).toBe('Clone')
-  });
-
-  test('Clone an item', async () => {
-    await goToMainPage();
-    const cloneButtons = await page.$$('.cloneButton')
-    await cloneButtons[0].click();
-    const titles = await page.$$('.title')
-    expect(titles.length).toBe(21)
-  });
 });
 
