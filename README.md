@@ -54,8 +54,13 @@ d. **Bonus** Step *a* wasn't enough - some tickets have long content. Add a show
 
 ### Part 2 - List functionality
 
-a. Agents are complaining that our search functionality isn't working properly. They gave the example that when searching for "wix store", the ticket titled "Search bar for my wix store" (id `6860d043-f551-58c8-84d6-f9e6a8cb0cb2`) is not returned. Checking the data, that ticket does exist.. Find the issue and fix it.  
-Friendly reminder to commit and push after completing this step.
+2a. It's pretty common that we need to clone tickets in our system.
+#### Part 1 
+Add a clone button or text that will replicate an item in the client.
+
+#### Part 2 
+Add a clone method in the API and server and add an in memory item to the collection 
+Connect your client side "clone" button to that API call 
 
 b. We're showing only 20 tickets but agents can swear there are more. Solve this problem.  
 **Keep in mind the number of tickets is planned to grow exponentially very soon so make sure to think of a proper solution.**
@@ -82,14 +87,6 @@ Otherwise, it is mandatory.
 
 a. Add at least 3 automated browser tests using puppeteer, testing key features of your choice.
 b. Add component tests (using `jest`) to your work from *part 1*.
-
-### Part 5 - Add A Clone Button
-It's pretty common that we need to clone tickets in our system.
-### Part 1 
-Add a clone button on the menu item and replicate an item in the client
-![CloneButton](./images/clone.png) 
-### Part 2 
-Add a clone method in the API and server and add an in memory item to the collection 
  
 ## General notes
 - Test your work well. Think of edge cases. Think of how users will use it, and make sure your work is of high quality
