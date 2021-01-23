@@ -2,7 +2,8 @@
   "packages": [
 	"client",
 	"server",
-    "configuration"
+    "configuration",
+    "tester"
   ],
   "version": "0.0.0"
 }

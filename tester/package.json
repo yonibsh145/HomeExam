@@ -12,7 +12,8 @@
     "puppeteer": "^5.5.0",
     "ts-jest": "^26.4.4",
     "typescript": "^4.1.3",
-    "wix-eventually": "^2.3.0"
+    "wix-eventually": "^2.3.0",
+    "@fed-exam/config": "^1.0.0"
   },
   "author": "",
   "license": "ISC",

@@ -30,20 +30,18 @@ app.get(APIPath, (req, res) => {
 
 // rename bonus part
 app.put('/api/tickets/:ticketId/title', (req, res) => {
-	const {ticketId} = req.params;
+  const { ticketId } = req.params;
 
-	const index = tempData.findIndex((ticket) => ticket.id === ticketId);
+  const index = tempData.findIndex((ticket) => ticket.id === ticketId);
 
-	if (index !== -1) {
-		tempData[index].title = req.body.title;
-		res.send(tempData[index]);
-	} else {
-		res.send(404);
-	}
+  if (index !== -1) {
+    tempData[index].title = req.body.title;
+    res.send(tempData[index]);
+  } else {
+    res.send(404);
+  }
 });
 
-app.listen(PORT);
-console.log('server running', PORT)
 app.listen(serverAPIPort);
 console.log('server running', serverAPIPort)
 
