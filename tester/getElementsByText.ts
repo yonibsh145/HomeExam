@@ -1,4 +1,5 @@
 export const getElementsByText = async (textOptions, page) => {
+  textOptions = [...textOptions]
   let query = `//*[contains(text(), '${textOptions[0]}')`
   textOptions.splice(1).forEach(option => {
     query += ` or contains(text(), '${option}')`
@@ -10,3 +11,4 @@ export const getElementsByText = async (textOptions, page) => {
 
   return elements
 }
+
