@@ -1,3 +1,5 @@
+import { getElementsByText } from "./getElementsByText";
+
 const puppeteer = require('puppeteer');
 const serverData = require('../server/data.json');
 import { staticsUrl } from '@fed-exam/config';
@@ -6,35 +8,38 @@ let browser;
 let page;
 
 beforeAll(async () => {
-    browser = await puppeteer.launch();
-    page = await browser.newPage();
-    await page.setViewport({
-        width: 1280,
-        height: 1080,
-        deviceScaleFactor: 1,
-    });
+  browser = await puppeteer.launch();
+  page = await browser.newPage();
+  await page.setViewport({
+    width: 1280,
+    height: 1080,
+    deviceScaleFactor: 1,
+  });
 })
 
 afterAll(async () => {
-    await browser.close();
+  await browser.close();
 })
 
 const goToMainPage = async () => {
-    await page.goto(staticsUrl);
-    //await page.screenshot({ path: 'main_page.png' });
+  await page.goto(staticsUrl);
+  //await page.screenshot({ path: 'main_page.png' });
 }
 
 describe("pin Unpin", () => {
+  const pinButtonTexts = ['Pin', 'pin'];
+  const unpinButtonTexts = ['Unpin', 'unpin', 'UnPin', 'unPin'];
+
   test('pin element exists', async () => {
     await goToMainPage();
-    const pinButtons = await page.$x("//*[contains(text(), 'Pin') or contains(text(), 'pin')]");
+    let pinButtons = await getElementsByText(pinButtonTexts, page)
 
     expect(pinButtons.length).toBe(20)
   });
 
   test('pin click works', async () => {
     await goToMainPage();
-    const pinButtons = await page.$x("//*[contains(text(), 'Pin') or contains(text(), 'pin')]");
+    let pinButtons = await getElementsByText(pinButtonTexts, page)
 
     let titles = await page.$$('.title')
     let firstTitleValue = await page.evaluate(el => el.textContent, titles[0])
@@ -50,23 +55,23 @@ describe("pin Unpin", () => {
 
   test('unpin element exists after item pinned', async () => {
     await goToMainPage();
-    const pinButtons = await page.$x("//*[contains(text(), 'Pin') or contains(text(), 'pin')]");
+    let pinButtons = await getElementsByText(pinButtonTexts, page)
 
     let indexToPin = 5;
     await pinButtons[indexToPin].click();
+    let unpinButtons = await getElementsByText(unpinButtonTexts, page)
 
-    const unpinButtons = await page.$x("//*[contains(text(), 'unpin') or contains(text(), 'Unpin')]");
     expect(unpinButtons.length).toBe(1)
   });
 
   test('unpin element click works', async () => {
     await goToMainPage();
-    const pinButtons = await page.$x("//*[contains(text(), 'Pin') or contains(text(), 'pin')]");
+    let pinButtons = await getElementsByText(pinButtonTexts, page)
 
     let indexToPin = 5;
     await pinButtons[indexToPin].click();
 
-    const unpinButtons = await page.$x("//*[contains(text(), 'unpin') or contains(text(), 'Unpin')]");
+    let unpinButtons = await getElementsByText(unpinButtonTexts, page)
     await unpinButtons[0].click();
 
     let titles = await page.$$('.title')
@@ -76,16 +81,16 @@ describe("pin Unpin", () => {
 
   test('unpin element disappeared after click', async () => {
     await goToMainPage();
-    let pinButtons = await page.$x("//*[contains(text(), 'Pin') or contains(text(), 'pin')]");
+    let pinButtons = await getElementsByText(pinButtonTexts, page)
 
     let indexToPin = 5;
     await pinButtons[indexToPin].click();
 
-    let unpinButtons = await page.$x("//*[contains(text(), 'unpin') or contains(text(), 'Unpin')]");
+    let unpinButtons = await getElementsByText(unpinButtonTexts, page)
     await unpinButtons[0].click();
 
-    unpinButtons = await page.$x("//*[contains(text(), 'unpin') or contains(text(), 'Unpin')]");
-    pinButtons = await page.$x("//*[contains(text(), 'Pin') or contains(text(), 'pin')]");
+    unpinButtons = await getElementsByText(unpinButtonTexts, page)
+    pinButtons = await getElementsByText(pinButtonTexts, page)
 
     expect(unpinButtons.length).toBe(0);
     expect(pinButtons.length).toBe(20);
@@ -93,12 +98,12 @@ describe("pin Unpin", () => {
 
   test('unpin returns the element to the right place', async () => {
     await goToMainPage();
-    const pinButtons = await page.$x("//*[contains(text(), 'Pin') or contains(text(), 'pin')]");
+    let pinButtons = await getElementsByText(pinButtonTexts, page)
 
     let indexToPin = 5;
     await pinButtons[indexToPin].click();
 
-    const unpinButtons = await page.$x("//*[contains(text(), 'unpin') or contains(text(), 'Unpin')]");
+    let unpinButtons = await getElementsByText(unpinButtonTexts, page)
     await unpinButtons[0].click();
 
     let titles = await page.$$('.title')
@@ -107,32 +112,4 @@ describe("pin Unpin", () => {
   });
 
 })
-
-describe("Titles", () => {
-
-    test('20 titles are rendered', async () => {
-        await goToMainPage();
-        const titles = await page.$$('.title')
-
-        let value = await page.evaluate(el => el.textContent, titles[0])
-        expect(titles.length).toBe(20)
-    });
-
-    test('first title content is correct', async () => {
-        await goToMainPage();
-        const titles = await page.$$('.title')
-
-        let value = await page.evaluate(el => el.textContent, titles[0])
-        expect(value).toBe(serverData[0].title)
-    });
-
-    test('last title content is correct', async () => {
-        await goToMainPage();
-        const titles = await page.$$('.title')
-
-        let value = await page.evaluate(el => el.textContent, titles[titles.length - 1])
-        expect(value).toBe(serverData[titles.length - 1].title)
-    });
-
-});
 
