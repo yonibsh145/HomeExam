@@ -86,11 +86,9 @@ b. Add component tests (using `jest`) to your work from *part 1*.
 ### Part 5 - Font Resize
 Add a way for users to resize the texts inside the list to 3 states:
 `small`, `normal`, `large`
-![Font Size](images/font-size-component.png)
 
-a. Add a new component above the heading which allows resize to the 3 sizes: `small`, `normal`, `large`
-b. Apply the changes to our list on every change  
-> the default should be normal  
+1. Add a new component above the heading with 3 buttons with the following text "small font", "normal font" and "large font"
+2. Apply the changes to our list on every click when the default should be normal 
 
 #### Bonus 
 Make sure you can't choose an already chosen state

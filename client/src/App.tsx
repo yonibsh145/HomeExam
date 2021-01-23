@@ -8,7 +8,7 @@ export type AppState = {
 	textSize: textSize;
 }
 
-export type textSize = 'small' |'normal' | 'large';
+type textSize = 'small' |'normal' | 'large';
 
 const api = createApiClient();
 
@@ -44,7 +44,7 @@ export class App extends React.PureComponent<{}, AppState> {
 	renderTextButton = (size: textSize ) => {
 		const { textSize } = this.state;
 		return(
-			<button id={size} disabled={ textSize === size } onClick={() => this.setTextSize(size) }>{size}</button>
+			<button id={size} disabled={ textSize === size } onClick={() => this.setTextSize(size) }>{`${size} font`}</button>
 		);
 	}
 
@@ -66,7 +66,7 @@ export class App extends React.PureComponent<{}, AppState> {
 	}
 
 	onSearch = async (val: string, newPage?: number) => {
-		
+
 		clearTimeout(this.searchDebounce);
 
 		this.searchDebounce = setTimeout(async () => {
@@ -76,7 +76,7 @@ export class App extends React.PureComponent<{}, AppState> {
 		}, 300);
 	}
 
-	render() {	
+	render() {
 		const {tickets, textSize} = this.state;
 
 		return (<main>
@@ -85,7 +85,7 @@ export class App extends React.PureComponent<{}, AppState> {
 			<header>
 				<input type="search" placeholder="Search..." onChange={(e) => this.onSearch(e.target.value)}/>
 			</header>
-			{tickets ? <div className='results'>Showing {tickets.length} results</div> : null }	
+			{tickets ? <div className='results'>Showing {tickets.length} results</div> : null }
 			{tickets ? this.renderTickets(tickets, textSize) : <h2>Loading..</h2>}
 		</main>)
 	}
