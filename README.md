@@ -54,8 +54,12 @@ d. **Bonus** Step *a* wasn't enough - some tickets have long content. Add a show
 
 ### Part 2 - List functionality
 
-2a. Agents are complaining that our search functionality isn't working properly. They gave the example that when searching for "wix store", the ticket titled "Search bar for my wix store" (id `6860d043-f551-58c8-84d6-f9e6a8cb0cb2`) is not returned. Checking the data, that ticket does exist.. Find the issue and fix it.  
-Friendly reminder to commit and push after completing this step.
+2a. Agents are complaining that our search functionality isn't working properly.
+They gave the example that when searching for "wix store", the ticket titled "Search bar for my wix store" (id `6860d043-f551-58c8-84d6-f9e6a8cb0cb2`) is not returned.
+Checking the data, that ticket does exist...
+
+1.Add a query param `?search=` to the `/tickets` API call and implement it on the server side.
+2.Connect your client side search bar to that API call
 
 b. We're showing only 20 tickets but agents can swear there are more. Solve this problem.  
 **Keep in mind the number of tickets is planned to grow exponentially very soon so make sure to think of a proper solution.**
