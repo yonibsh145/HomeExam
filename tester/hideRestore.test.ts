@@ -1,5 +1,6 @@
 const puppeteer = require('puppeteer');
 const serverData = require('../server/data.json');
+import { staticsUrl } from '@fed-exam/config';
 
 let browser;
 let page;
@@ -19,7 +20,7 @@ afterAll(async () => {
 })
 
 const goToMainPage = async () => {
-  await page.goto('http://localhost:3000/');
+  await page.goto(staticsUrl);
   //await page.screenshot({ path: 'main_page.png' });
 }
 
