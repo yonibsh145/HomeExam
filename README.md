@@ -46,6 +46,11 @@ c. Our ticket's data *might* also contain labels (tags), but we're not making us
 ![labels](https://d2x3xhvgiqkx42.cloudfront.net/3d412e82-d97e-487e-b1a3-41a6bd24a05b/b9bd9ddb-c0bf-4b55-888e-747f0d6524c8/2019/09/27/6d307660-953a-4e00-a28d-ffbc48e68fb8/5d422571-d37c-4890-9837-4f786f1e5e10.png)  
 Friendly reminder to commit and push after completing this step.
 
+d.
+    1. Aside from labels, we also have a "priority" property on a ticket. The priority enum can be found in `api.ts`. Add an indication in the ticket's footer (`<footer>`) for the right priority to a ticket item. Design it as you see fit. Make sure to use the string "high" and "normal". If a priority property is not present in the ticket, treat it as a "normal" priority ticket
+    2. clicking on a priority label should toggle the priority for the ticket - client only (no need to save it)
+    3. BONUS - save the changed priority to the server after changing it in the UI
+
 #### 1D - Bonus Task
 d. **Bonus** Step *a* wasn't enough - some tickets have long content. Add a show more / show less functionality when the content exceeds 3 lines, as following:  
 ![show more/less](https://d2x3xhvgiqkx42.cloudfront.net/3d412e82-d97e-487e-b1a3-41a6bd24a05b/b9bd9ddb-c0bf-4b55-888e-747f0d6524c8/2019/09/27/fd41c164-d566-471e-9723-e785b313845a/738cbaa0-93e8-4f02-861d-6fab92c608bd.gif)  

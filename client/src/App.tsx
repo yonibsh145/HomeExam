@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.scss';
-import {createApiClient, Ticket} from './api';
+import {createApiClient, Ticket, TicketPriority} from './api';
 
 export type AppState = {
 	tickets?: Ticket[],
@@ -9,6 +9,10 @@ export type AppState = {
 
 const api = createApiClient();
 
+const prioritiesMap = {
+	20: 'Normal',
+	30: 'High'
+}
 export class App extends React.PureComponent<{}, AppState> {
 
 	state: AppState = {
@@ -23,6 +27,18 @@ export class App extends React.PureComponent<{}, AppState> {
 		});
 	}
 
+	onToggleTicketPriority = (ticket: Ticket) => {
+		const {tickets} = this.state;
+		if (!tickets) {
+			return;
+		}
+		const newPriority = ticket.priority === TicketPriority.HIGH ? TicketPriority.NORMAL : TicketPriority.HIGH;
+		const newTickets = tickets.map(t => t.id === ticket.id ? {...ticket, priority: newPriority} : t);
+		this.setState({tickets: newTickets});
+
+		api.updatePriority(ticket.id, newPriority);
+	}
+
 	renderTickets = (tickets: Ticket[]) => {
 
 		const filteredTickets = tickets
@@ -34,6 +50,7 @@ export class App extends React.PureComponent<{}, AppState> {
 				<h5 className='title'>{ticket.title}</h5>
 				<footer>
 					<div className='meta-data'>By {ticket.userEmail} | { new Date(ticket.creationTime).toLocaleString()}</div>
+					<span onClick={() => this.onToggleTicketPriority(ticket)}>{prioritiesMap[ticket.priority || 20]}</span>
 				</footer>
 			</li>))}
 		</ul>);

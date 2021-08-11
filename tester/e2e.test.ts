@@ -57,6 +57,8 @@ describe("Titles", () => {
     await goToMainPage();
     const titles = await page.$$('.title')
 
+    console.log({titles: titles.length});
+
     let value = await page.evaluate(el => el.textContent, titles[titles.length - 1])
     expect(value).toBe(serverData[titles.length - 1].title)
   });
