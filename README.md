@@ -49,7 +49,7 @@ Friendly reminder to commit and push after completing this step.
 
 d. We want to display the date of tickets that were created in the past week in a "time ago" format. Change creation date for those tickets to be displayed as the following:
 1. if it's less than 60 minutes show the minutes ago
-2. if it's less than 24 hours show the hours age
+2. if it's less than 24 hours show the hours ago
 3. otherwise show days ago
 Make sure the new date is displayed under "time-ago" className.
 Feel free to change ticket's data in order to see your change.
