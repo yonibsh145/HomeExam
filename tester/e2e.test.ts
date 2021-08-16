@@ -1,6 +1,13 @@
 const puppeteer = require('puppeteer');
 const serverData = require('../server/data.json');
-import { staticsUrl } from '@fed-exam/config';
+
+const host = 'http://localhost'
+const staticsPort = 3000;
+const staticsUrl = `${host}:${staticsPort}/`;
+const serverAPIPort = 3232;
+const APIDomain = 'tickets';
+const APIPath = `/api/${APIDomain}`;
+const APIRootPath = `${host}:${serverAPIPort}${APIPath}`
 
 let browser;
 let page;
@@ -37,7 +44,7 @@ const goToMainPage = async () => {
 
 describe("Titles", () => {
 
-  test('20 titles are rendered', async () => {
+  test('20 titles are rendered', async () => {  
     await goToMainPage();
     const titles = await page.$$('.title')
 

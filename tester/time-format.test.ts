@@ -29,6 +29,8 @@ afterAll(async () => {
 })
 
 afterEach(async () => {
+  await axios.post(`${APIRootPath}/clean`);
+
   try {
     await page.screenshot({
       path: `results/screenshots/${expect.getState().currentTestName}.png`,

@@ -38,6 +38,12 @@ app.post(APIPath, (req, res) => {
 
   res.end();
 });
+app.post(`${APIPath}/clean`, (req, res) => {
+
+  // @ts-ignore
+  data = tempData;
+  res.end();
+});
 
 app.listen(serverAPIPort);
 console.log('server running', serverAPIPort)
